@@ -1,0 +1,39 @@
+body{
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    background-color: aquamarine;
+
+}
+.main-box{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 500px;
+    width: 350px;
+    background-color: blueviolet;
+    padding: 10pc;
+
+}
+
+.small-box1{
+    height: 300px;
+    width: 800px;
+    background-color: blue;
+    border: 2px solid black;
+    padding: 5pc;
+    display: flex;
+    justify-content: center;
+
+}
+.small-box2{
+    height: 300px;
+    width: 200px;
+    background-color: blue; 
+    border: 2px solid black;
+    padding: 5pc;
+    display: flex;
+    justify-content: center;
+  
+}

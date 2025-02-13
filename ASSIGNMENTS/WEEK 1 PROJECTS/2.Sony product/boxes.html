@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="boxes.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boxes Inside a Big Box</title>
+    <style>
+        .big-box {
+            width: 900px;
+            height: 550px;
+            border: 5px solid rgb(9, 179, 51);
+            padding: 20px;
+            background-color: #f6f1f1eb;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border-radius: 4%;
+        }
+        .big-nav {
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            background-color: #098ddfdd;
+            color: rgba(17, 160, 231, 0.929);
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 2em;
+        }
+
+        .big-nav a {
+            color: rgba(14, 1, 1, 0.907);
+            text-decoration: none;
+            padding: 5px 10px;
+        }
+
+        .big-nav a:hover {
+            background-color: #555;
+            border-radius: 0px;
+        }
+        .small-boxes {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            border: none;
+        }
+        .small-box1 {
+            width: 45%;
+            height: 450px;
+            border: 0px solid black;
+            background-color: white;
+            padding: 20px;
+            border-radius: 2em;
+        }
+        .small-box2 {
+            width: 45%;
+            height: 450px;
+            border: 0px solid black;
+            background-color: white;
+            padding: 20px;
+            border-radius: 2em;
+          
+        }
+        .small-nav {
+            display: flex;
+            justify-content: space-around;
+            background-color: #444;
+            color: white;
+            padding: 5px;
+            margin-bottom: 10px;
+            border-radius: 2em;
+        }
+
+        .small-nav a {
+            color: white;
+            text-decoration: none;
+            padding: 5px;
+        }
+
+        .small-nav a:hover {
+            background-color: #666;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div class="big-box">
+        <div class="big-nav">
+            <a href="#">Home</a>
+            <a href="#">Shop</a>
+            <a href="#">Contact</a>
+            <a href="#">Help</a>
+            <a href="#">Account</a>
+        </div>
+        <div class="small-boxes">
+            <div class="small-box1">
+                <div class="small-nav">
+                    <a href="#" <select id="options" name="options">
+                      <option value="account">Account</option>
+                  </select></a>
+                    <a href="#">Shipping</a>
+                    <a href="#">Payment</a>
+                </div>
+                <h1>Account details</h1> 
+                <label for="textbox" id="labels">Email:</label><br><br>
+                <input type="text" id="frame" placeholder="joseph@gmail.com"> <input type="checkbox" id="check bpx">
+         <label for="checkbox">click me</label>
+                <br><br>
+                <label for="textbox">Password:</label><br><br>
+                <input type="password" id="frame" placeholder="required"><br><br><br>
+                <label for="register">Register your account</label>
+                <button class="register">Login</button><br><br><br>
+                <label for="cancel">Cancel order</label>
+                <button class="cancel">Cancel order</button>
+               
+            </div>
+            <div class="small-box2">
+              <h1>Order summary</h1>
+              <img src="immo-removebg-preview.png" alt="">
+              <h3>Sony wireless headphones</h3>
+                <label for="Quantity">Quantity :</label><br><br>
+                <input type="number" id="Quantity" name="Quantity" min="1" value="1">
+                <h2>£320.45</h2>
+                <p>Gift card/discount code</p>
+                <input type="code" class="code">
+                <button type="Apply" id="Apply">Apply</button>
+              
+    <table>
+   
+      <tr>
+          <td>Sub total</td>
+          
+          <td>£316.55</td>
+      </tr>
+      <tr>
+          <td>Tax</td>
+          <td>£3.45</td>
+       
+      </tr>
+      <tr>
+        <td>Shipping</td>
+        <td>Free</td>
+     
+    </tr>
+      <tr>
+        <th>Total</th>
+        
+        <th>£320.45</th>
+    </tr>
+  </table>
+    
+
+
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
