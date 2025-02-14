@@ -11,12 +11,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
               
                 productCard.innerHTML = `
-                    <h2>${product.name}</h2>
-                    <p><strong>ID:</strong> ${product.id}</p>
-                    <p><strong>Description:</strong> ${product.description}</p>
-                    <p><strong>Price:</strong> $${product.price}</p>
-                    <p><strong>Category:</strong> ${product.category}</p>
-                    <p><strong>Stock:</strong> ${product.stock} available</p>
+                    <h2>${product.name}</h2><br>
+                    <img src ="${product.images}" alt = "${product.name}">
+                    <p><strong>ID:</strong> ${product.id}</p><br>
+                    <p><strong>Description:</strong> ${product.description}</p><br>
+                    <p><strong>Price:</strong> $${product.price}</p><br>
+                    <p><strong>Category:</strong> ${product.category}</p><br>
+                    <p><strong>Stock:</strong> ${product.stock} available</p><br><br><br>
                     <button class="Mybtn">Confirm purchase</button>
                     
                 `;

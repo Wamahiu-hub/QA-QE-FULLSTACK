@@ -6,7 +6,8 @@
       "description": "A high-precision wireless mouse with adjustable DPI settings.",
       "price": 29.99,
       "category": "Electronics",
-      "stock": 150
+      "stock": 150,
+
     },
     {
       "id": "002",
@@ -39,6 +40,15 @@
       "price": 15.99,
       "category": "Home & Kitchen",
       "stock": 200
+    }
+    {
+      "id": "006",
+      "name": "HDMI cable",
+      "description": "A strong 1.5M HDMI cable for your office use.",
+      "price": 2.99,
+      "category": "Office",
+      "stock": 20
+
     }
   ]
 }
