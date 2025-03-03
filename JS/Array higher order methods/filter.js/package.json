@@ -4,9 +4,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon  ./src/index.js",
-    "filter": "nodemon ./src/filter.js"
-    "map": "nodemon  ./src/map.js",
+    "dev": "nodemon  ./src/this keyword.js",
+    "filter": "nodemon ./src/this keyword.js"
+  
   },
   "keywords": [],
   "author": "",

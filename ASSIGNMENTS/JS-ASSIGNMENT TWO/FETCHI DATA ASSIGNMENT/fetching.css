@@ -1,0 +1,197 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #b2d6db;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Prevents horizontal scrolling */
+}
+
+.container {
+    width: 80%;
+    margin: 20px auto;
+    background: rgba(234, 175, 175, 0.505);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    color: #333;
+}
+
+.filters {
+    margin-bottom: 20px;
+    background-color: #ff6600;
+}
+
+.filters select, .filters input, .filters button {
+    padding: 10px;
+    margin: 5px;
+    font-size: 16px;
+    border-radius: 10px;
+}
+
+#bookList {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.book {
+    width: 300px;
+    background: #0cbe0c3c;
+    margin: 10px;
+    padding: 15px;
+    border-radius: 20px;
+    box-shadow: 0px 4px 6px rgba(222, 6, 157, 0.829);
+}
+.book:hover {
+    transform: scale(1.1);
+    background-color: aqua;
+}
+
+.book img {
+    width: 18pc;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 30px;
+}
+
+
+.cart-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: #ff6b6b;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    font-weight: bold;
+    z-index: 15; /* Ensures it stays above everything */
+}
+
+.cart-container .cart-icon {
+    font-size: 24px;
+    margin-right: 5px;
+    background-color: rgb(147, 185, 216);
+}
+
+.cart-count {
+    background: rgb(150, 212, 157);
+    color: #0b0b0b;
+    border-radius: 50%;
+    padding: 5px;
+    font-size: 14px;
+    margin-left: 5px;
+    min-width: 20px;
+    text-align: center;
+}
+
+.cart-modal {
+    position: fixed;
+    top: 0;
+    right: -20px; /* Ensures it's initially hidden */
+    width: 350px; 
+    height: 100vh;
+    background: rgb(255, 255, 255);
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.2);
+    z-index: 10; /* Higher than the cart button */
+    padding: 20px;
+    
+}
+
+
+.cart-modal.show {
+    right: 0; 
+}
+
+
+.cart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.close-cart {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 10px 0;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.cart-item img {
+    width: 60px;
+    height: 60px;
+    margin-right: 10px;
+    border-radius: 5px;
+    object-fit: cover;
+}
+
+
+.quantity-controls {
+    display: flex;
+    align-items: center;
+}
+
+.quantity-controls button {
+    background: #ff6b6b;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+    color: white;
+    font-size: 16px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    text-align: center;
+    margin: 0 5px;
+}
+
+.quantity-controls button:hover {
+    background: #e63946;
+}
+
+
+.checkout-btn {
+    width: 100%;
+    background: green;
+    color: white;
+    padding: 12px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+.checkout-btn:hover {
+    background: darkgreen;
+}
+.buy-now{
+    background-color: rgba(128, 255, 0, 0.653);
+    padding: 10px;
+    padding-left: 60px;
+    padding-right: 60px;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 20px;
+    cursor: pointer;
+}

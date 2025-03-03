@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Search & Sorting System</title>
+    <link rel="stylesheet" href="fetching.css">
+</head>
+<body>
+
+    <div class="cart-container" onclick="toggleCart()">
+        🛒 Cart <span class="cart-count" id="cartCount">0</span>
+    </div>
+
+    <!-- Cart Modal -->
+    <div id="cartModal" class="cart-modal">
+        <div class="cart-header">
+            <h2>Your Cart 🛒</h2>
+            <button class="close-cart" onclick="toggleCart()">✖</button>
+        </div>
+        <div id="cartItems"></div> <!-- Items will be displayed here -->
+        <div id="totalPrice">Total:</div> <!-- Displays total price -->
+        <button class="checkout-btn" onclick="checkout()">Checkout</button>
+    </div>
+
+    <div class="container">
+        <h1>📚 Book Search & Sorting</h1>
+
+        <div class="filters">
+            <select id="genreFilter">
+                <option value="">All Genres</option>
+                <option value="Fantasy">Fantasy</option>
+                <option value="Dystopian">Dystopian</option>
+                <option value="Fiction">Fiction</option>
+            </select>
+            
+            <input type="number" id="yearFilter" placeholder="Published after (Year)">
+            <input type="number" id="pageFilter" placeholder="Min Pages">
+
+            <select id="sortBy">
+                <option value="title">Sort by Title</option>
+                <option value="year">Sort by Year</option>
+                <option value="pages">Sort by Pages</option>
+            </select>
+
+            <button onclick="applyFilters()">🔍 Search</button>
+        </div>
+        
+        <div id="bookList"></div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
