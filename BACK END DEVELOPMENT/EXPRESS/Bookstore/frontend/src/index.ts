@@ -1,7 +1,7 @@
 import { books,} from "./products";
 import { API_URL } from "./config";
 import { Book, CartItem } from "./types";
-import { updateCartUI } from "./filter" ;
+import { fetchBooksFilter } from "./filter";
 
 const fetchBook = async () => {
   try {
@@ -49,6 +49,90 @@ fetchBook().then((books) => {
   }
 });
 
+const applyFilters = async () => {
+  const titleElement = document.getElementById("title") as HTMLInputElement;
+  const genreElement = document.getElementById("genre") as HTMLInputElement;
+  const yearElement = document.getElementById("year") as HTMLInputElement;
+
+  const title = titleElement ? titleElement.value.trim() : "";
+  const genre = genreElement ? genreElement.value.trim() : "";
+  const year = yearElement ? yearElement.value.trim() : "";
+
+  const params = new URLSearchParams();
+  if (title) params.set("title", title);
+  if (genre) params.set("genre", genre);
+  if (year) params.set("year", year);
+
+  // Update the URL without reloading the page
+  const newUrl = `${window.location.pathname}?${params.toString()}`;
+  window.history.pushState({}, "", newUrl);
+
+  // Fetch books based on filters
+  const books = await fetchBooksFilter(`?${params.toString()}`);
+  displayBooks(books);
+};
+
+// Load filters from URL on page load
+const loadFiltersFromUrl = async () => {
+  const params = new URLSearchParams(window.location.search);
+  const title = params.get("title") || "";
+  const genre = params.get("genre") || "";
+  const year = params.get("year") || "";
+
+  // Set input values from URL
+  (document.getElementById("title") as HTMLInputElement).value = title;
+  (document.getElementById("genre") as HTMLInputElement).value = genre;
+  (document.getElementById("year") as HTMLInputElement).value = year;
+
+  if (title || genre || year) {
+    const books = await fetchBooksFilter(`?${params.toString()}`);
+    displayBooks(books);
+  }
+};
+
+// Attach event listeners for real-time filtering
+document.getElementById("title")?.addEventListener("input", applyFilters);
+document.getElementById("genre")?.addEventListener("input", applyFilters);
+document.getElementById("year")?.addEventListener("input", applyFilters);
+document.getElementById("applyFilters")?.addEventListener("click", applyFilters);
+
+// Load filters when the page loads
+window.addEventListener("load", loadFiltersFromUrl);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 let cart: CartItem[] = JSON.parse(localStorage.getItem("cart") || "[]");
@@ -80,7 +164,7 @@ function addToCart(event: Event): void {
 
   localStorage.setItem("cart", JSON.stringify(cart));
 
-  updateCartUI();
+  // updateCartUI();
 }
 
 
@@ -94,7 +178,7 @@ function updateQuantity(id: string, change: number): void {
   }
 
   localStorage.setItem("cart", JSON.stringify(cart));
-  updateCartUI();
+  // updateCartUI();
 }
 
 export { addToCart, updateQuantity, API_URL };

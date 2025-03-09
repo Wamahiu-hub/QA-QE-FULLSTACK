@@ -1,4 +1,4 @@
-import express from "express";
+import express, { Request, Response } from "express";
 import dotenv from "dotenv";
 import { books } from "./books"; // Ensure books is imported correctly
 import cors from "cors";
@@ -21,38 +21,44 @@ app.get("/api/books", (req, res) => {
   res.json(books);
 });
 
+app.get("/api/books/filter", (req: Request, res: Response) => {
+  try {
+    const { title, genre, year } = req.query;
 
-app.get("/api/books/filter", (req, res) => {
-  let filteredBooks = [...books]; 
+    let filteredBooks = books;
 
-  const { genre, year, pages, sortBy } = req.query;
+    // Convert query parameters to lowercase for case-insensitive filtering
+    const titleQuery = title ? (title as string).trim().toLowerCase() : "";
+    const genreQuery = genre ? (genre as string).trim().toLowerCase() : "";
+    const yearQuery = year ? (year as string).trim() : "";
 
-  if (genre) {
-    filteredBooks = filteredBooks.filter((book) => book.genre.toLowerCase() === (genre as string).toLowerCase());
-  }
-
-  if (year) {
-    const yearInt = parseInt(year as string);
-    filteredBooks = filteredBooks.filter((book) => book.year >= yearInt);
-  }
-
-  if (pages) {
-    const pagesInt = parseInt(pages as string);
-    filteredBooks = filteredBooks.filter((book) => book.pages >= pagesInt);
-  }
-
-  if (sortBy) {
-    if (sortBy === "title") {
-      filteredBooks.sort((a, b) => a.title.localeCompare(b.title));
-    } else if (sortBy === "year") {
-      filteredBooks.sort((a, b) => a.year - b.year);
-    } else if (sortBy === "pages") {
-      filteredBooks.sort((a, b) => a.pages - b.pages);
+    if (titleQuery) {
+      filteredBooks = filteredBooks.filter((book) =>
+        book.title.toLowerCase().includes(titleQuery)
+      );
     }
-  }
 
-  res.json(filteredBooks);
+    if (genreQuery) {
+      filteredBooks = filteredBooks.filter((book) =>
+        book.genre.toLowerCase().includes(genreQuery)
+      );
+    }
+
+    if (yearQuery) {
+      filteredBooks = filteredBooks.filter((book) =>
+        book.year.toString().startsWith(yearQuery) // Use `.startsWith()` for partial match
+      );
+    }
+
+    res.json(filteredBooks);
+  } catch (error) {
+    console.error("Error filtering books:", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
 });
+
+
+
 
 // Start the server
 app.listen(port, () => {

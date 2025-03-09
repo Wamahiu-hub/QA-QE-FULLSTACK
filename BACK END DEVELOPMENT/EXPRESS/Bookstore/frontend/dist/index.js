@@ -7,8 +7,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var _a, _b, _c, _d;
 import { API_URL } from "./config";
-import { updateCartUI } from "./filter";
+import { fetchBooksFilter } from "./filter";
 const fetchBook = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const response = yield fetch("http://localhost:3000/API/BOOKS");
@@ -51,6 +52,49 @@ fetchBook().then((books) => {
         displayBooks(books);
     }
 });
+const applyFilters = () => __awaiter(void 0, void 0, void 0, function* () {
+    const titleElement = document.getElementById("title");
+    const genreElement = document.getElementById("genre");
+    const yearElement = document.getElementById("year");
+    const title = titleElement ? titleElement.value.trim() : "";
+    const genre = genreElement ? genreElement.value.trim() : "";
+    const year = yearElement ? yearElement.value.trim() : "";
+    const params = new URLSearchParams();
+    if (title)
+        params.set("title", title);
+    if (genre)
+        params.set("genre", genre);
+    if (year)
+        params.set("year", year);
+    // Update the URL without reloading the page
+    const newUrl = `${window.location.pathname}?${params.toString()}`;
+    window.history.pushState({}, "", newUrl);
+    // Fetch books based on filters
+    const books = yield fetchBooksFilter(`?${params.toString()}`);
+    displayBooks(books);
+});
+// Load filters from URL on page load
+const loadFiltersFromUrl = () => __awaiter(void 0, void 0, void 0, function* () {
+    const params = new URLSearchParams(window.location.search);
+    const title = params.get("title") || "";
+    const genre = params.get("genre") || "";
+    const year = params.get("year") || "";
+    // Set input values from URL
+    document.getElementById("title").value = title;
+    document.getElementById("genre").value = genre;
+    document.getElementById("year").value = year;
+    if (title || genre || year) {
+        const books = yield fetchBooksFilter(`?${params.toString()}`);
+        displayBooks(books);
+    }
+});
+// Attach event listeners for real-time filtering
+(_a = document.getElementById("title")) === null || _a === void 0 ? void 0 : _a.addEventListener("input", applyFilters);
+(_b = document.getElementById("genre")) === null || _b === void 0 ? void 0 : _b.addEventListener("input", applyFilters);
+(_c = document.getElementById("year")) === null || _c === void 0 ? void 0 : _c.addEventListener("input", applyFilters);
+(_d = document.getElementById("applyFilters")) === null || _d === void 0 ? void 0 : _d.addEventListener("click", applyFilters);
+// Load filters when the page loads
+window.addEventListener("load", loadFiltersFromUrl);
 let cart = JSON.parse(localStorage.getItem("cart") || "[]");
 function addToCart(event) {
     const button = event.target;
@@ -73,7 +117,7 @@ function addToCart(event) {
         cart.push({ id, title, price, image, quantity: 1 });
     }
     localStorage.setItem("cart", JSON.stringify(cart));
-    updateCartUI();
+    // updateCartUI();
 }
 function updateQuantity(id, change) {
     const item = cart.find(item => item.id === id);
@@ -84,7 +128,7 @@ function updateQuantity(id, change) {
         }
     }
     localStorage.setItem("cart", JSON.stringify(cart));
-    updateCartUI();
+    // updateCartUI();
 }
 export { addToCart, updateQuantity, API_URL };
 //# sourceMappingURL=index.js.map
